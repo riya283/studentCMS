@@ -11,7 +11,7 @@ const Home = () => {
 
   // get Record from dataBase
   const getStudentRecord = () => {
-    fetch("https://student-cms-be.herokuapp.com/api/studentInfo").then((response) => response.json()).then((record) => setRecords(record)).catch((error) => console.log(error));
+    fetch("https://student-cms-be.herokuapp.com/api/studentInfo", { mode: 'no-cors', }).then((response) => response.json()).then((record) => setRecords(record)).catch((error) => console.log(error));
   }
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Home = () => {
   const deleteStudentRecord = (id) => {
     return (
       fetch("https://student-cms-be.herokuapp.com/api/studentInfo/delete", {
-        method: 'POST', body: JSON.stringify({ id }), headers: {
+        method: 'POST', mode: 'no-cors', body: JSON.stringify({ id }), headers: {
           'Content-Type': 'application/json'
         }
       }).then((response) => {
@@ -98,7 +98,7 @@ const Home = () => {
   // filter student Record
   const filterStudentRecord = (event) => {
     // setFilterRecord(event.target.value);
-    fetch('https://student-cms-be.herokuapp.com/api/studentInfo/byFilter',{method: 'POST', body:  JSON.stringify({ filterType: event.target.value }), headers: {
+    fetch('https://student-cms-be.herokuapp.com/api/studentInfo/byFilter',{method: 'POST', mode: 'no-cors', body:  JSON.stringify({ filterType: event.target.value }), headers: {
       'Content-Type': 'application/json'
     }  }).then((response) => response.json()).then((record) => setRecords(record)).catch((error) => console.log(error));
   }
