@@ -11,7 +11,7 @@ const Home = () => {
 
   // get Record from dataBase
   const getStudentRecord = () => {
-    fetch("https://student-cms-be.herokuapp.com/api/studentInfo", { mode: 'no-cors', }).then((response) => response.json()).then((record) => setRecords(record)).catch((error) => console.log(error));
+    fetch("https://student-cms-be.herokuapp.com/api/studentInfo", { mode: "cors" , method: "GET" }).then((response) => response.json()).then((record) => setRecords(record)).catch((error) => console.log(error));
   }
 
   useEffect(() => {
@@ -98,11 +98,13 @@ const Home = () => {
   // filter student Record
   const filterStudentRecord = (event) => {
     // setFilterRecord(event.target.value);
-    fetch('https://student-cms-be.herokuapp.com/api/studentInfo/byFilter',{method: 'POST', mode: 'no-cors', body:  JSON.stringify({ filterType: event.target.value }), headers: {
-      'Content-Type': 'application/json'
-    }  }).then((response) => response.json()).then((record) => setRecords(record)).catch((error) => console.log(error));
+    fetch('https://student-cms-be.herokuapp.com/api/studentInfo/byFilter', {
+      method: 'POST', mode: 'no-cors', body: JSON.stringify({ filterType: event.target.value }), headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => response.json()).then((record) => setRecords(record)).catch((error) => console.log(error));
   }
-  
+
 
   return (
     <div className='home'>
@@ -134,8 +136,8 @@ const Home = () => {
       {/* body section */}
       <div style={{ margin: '15px' }}>
         <h3 className='text-center'>Student Record</h3>
-        <div class="dropdown"><h3 style={{display: 'inline', color: 'blue'}}>Filter Record: </h3>
-         <select class="button-select" aria-label="Default select example" onChange={filterStudentRecord}>
+        <div class="dropdown"><h3 style={{ display: 'inline', color: 'blue' }}>Filter Record: </h3>
+          <select class="button-select" aria-label="Default select example" onChange={filterStudentRecord}>
             <option selected>Select</option>
             <option value="BY_NAME_ASC">By Name</option>
             <option value="BY_CITY_ASC">By City</option>
