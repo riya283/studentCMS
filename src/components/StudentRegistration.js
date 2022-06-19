@@ -24,7 +24,7 @@ const StudentRegistration = ({
 
     const updateStudent = () => {
         fetch("https://student-cms-be.herokuapp.com/api/studentInfo/update", {
-            method: 'POST', mode: 'no-cors', body: JSON.stringify(studentInfo), headers: {
+            method: 'POST', body: JSON.stringify(studentInfo), headers: {
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
@@ -42,7 +42,7 @@ const StudentRegistration = ({
 
     const createStudent = () => {
         fetch("https://student-cms-be.herokuapp.com/api/studentInfo", {
-            method: 'POST', mode: 'no-cors', body: JSON.stringify(studentInfo), headers: {
+            method: 'POST', body: JSON.stringify(studentInfo), headers: {
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
