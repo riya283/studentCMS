@@ -23,7 +23,7 @@ const StudentRegistration = ({
     }
 
     const updateStudent = () => {
-        fetch("http://localhost:8080/api/studentInfo/update", {
+        fetch("https://student-cms-be.herokuapp.com/api/studentInfo/update", {
             method: 'POST', body: JSON.stringify(studentInfo), headers: {
                 'Content-Type': 'application/json'
             }
@@ -41,7 +41,7 @@ const StudentRegistration = ({
 
 
     const createStudent = () => {
-        fetch("http://localhost:8080/api/studentInfo", {
+        fetch("https://student-cms-be.herokuapp.com/api/studentInfo", {
             method: 'POST', body: JSON.stringify(studentInfo), headers: {
                 'Content-Type': 'application/json'
             }
