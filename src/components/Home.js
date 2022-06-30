@@ -31,6 +31,7 @@ const Home = () => {
           <th scope='col'>City</th>
           <th scope='col'>State</th>
           <th scope='col'>Registration Date</th>
+          <th scope='col'>Grade</th>
           <th></th>
         </thead>
         {
@@ -43,6 +44,7 @@ const Home = () => {
               <td>{record.city}</td>
               <td>{record.state}</td>
               <td>{record.registrationDate}</td>
+              <td>{record.grade}</td>
               <td><button className='btn btn-primary' data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => { setEditRecordId(record.id) }}>Edit</button></td>
               <td><button className='btn btn-danger' onClick={() => { deleteStudentRecord(record.id) }}>Delete</button></td></tr>
           </tbody>
@@ -142,6 +144,7 @@ const Home = () => {
             <option value="BY_NAME_ASC">By Name</option>
             <option value="BY_CITY_ASC">By City</option>
             <option value="BY_REG_DATE_ASC">By Registration Date</option>
+            <option value="BY_GRADE_ASC">By Grade</option>
           </select>
         </div><br></br>
         {displayStudentRecord()}

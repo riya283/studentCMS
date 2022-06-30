@@ -130,6 +130,10 @@ const StudentRegistration = ({
                     <label className="form-label">Registration Date</label>
                     <input type="date" data-date="" data-date-format="YYYY/MM/DD" className="form-control" id="registrationDate" placeholder='year/mm/dd' value={studentInfo.registrationDate} onChange={(e) => { setStudentValue(e, "registrationDate") }} />
                 </div>
+                <div className="mb-3">
+                    <label className="form-label">Grade</label>
+                    <input type="text" className="form-control" id="grade" value={studentInfo.grade} onChange={(e) => { setStudentValue(e, "grade") }} />
+                </div>
                 <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={beforeSubmit}>Submit</button>
 
             </div>
