@@ -7,7 +7,7 @@ import { Button, Modal } from 'bootstrap';
 const Home = () => {
   const [records, setRecords] = useState([]);
   const [editRecordId, setEditRecordId] = useState();
-  // const [filterRecord, setFilterRecord] = useState();
+  const [filterRecord, setFilterRecord] = useState();
 
   // get Record from dataBase
   const getStudentRecord = () => {
@@ -107,6 +107,15 @@ const Home = () => {
     }).then((response) => response.json()).then((record) => setRecords(record)).catch((error) => console.log(error));
   }
 
+  // filter student Record by user input
+  const filterRecordByInput = () => {
+    fetch('https://student-cms-be.herokuapp.com/api/studentInfo/getStudentInfoByUserInput', {
+      method: 'POST', body: JSON.stringify({ filterTypeByUserInput: filterRecord }), headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => response.json()).then((record) => setRecords(record)).catch((error) => console.log(error));
+  }
+
 
   return (
     <div className='home'>
@@ -138,15 +147,18 @@ const Home = () => {
       {/* body section */}
       <div style={{ margin: '15px' }}>
         <h3 className='text-center'>Student Record</h3>
-        <div class="dropdown"><h3 style={{ display: 'inline', color: 'blue' }}>Filter Record: </h3>
+        <div class="dropdown"><h3 style={{ display: 'inline', color: 'blue' }}>Sort Record: </h3>
           <select class="button-select" aria-label="Default select example" onChange={filterStudentRecord}>
             <option selected>Select</option>
             <option value="BY_NAME_ASC">By Name</option>
             <option value="BY_CITY_ASC">By City</option>
             <option value="BY_REG_DATE_ASC">By Registration Date</option>
             <option value="BY_GRADE_ASC">By Grade</option>
-          </select>
-        </div><br></br>
+          </select>&nbsp;&nbsp;&nbsp;
+          <input type="text" placeholder='Filter By Name' style={{ display: 'inline' }} onChange={(e) => setFilterRecord(e.target.value)} /> &nbsp;&nbsp;
+          <button onClick={filterRecordByInput} className="btn btn-primary">Filter</button>
+        </div>
+        <br></br>
         {displayStudentRecord()}
       </div>
     </div>
